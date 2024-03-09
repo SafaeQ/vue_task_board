@@ -62,8 +62,8 @@
           stroke-linejoin="round"
         />
       </svg>
-      <div class="border-r border-gray-300 h-10 w-1 m-3"></div>
-      <span class="font-bold text-center">Board</span>
+      <div class="border-r border-gray300 h-10 w-1 m-3"></div>
+      <span class="font-bold text-center text-black">Board</span>
     </div>
   </nav>
 </template>

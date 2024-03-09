@@ -10,7 +10,9 @@ export default {
       royalBlue: '#E1E4FA',
       gray92: '#EBEBEB',
       slightlyGray: '#F5F5F5',
-      dimGray: '#656565'
+      dimGray: '#656565',
+      black: '#000',
+      gray300: 'rgb(209 213 219)'
     }
   },
   plugins: [],
