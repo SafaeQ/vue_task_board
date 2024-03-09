@@ -13,7 +13,8 @@ export default {
       slightlyGrayBg: '#F5F4F4',
       dimGray: '#656565',
       black: '#000',
-      gray300: 'rgb(209 213 219)'
+      gray300: 'rgb(209 213 219)',
+      white: '#fff'
     }
   },
   plugins: [],
