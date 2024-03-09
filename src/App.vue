@@ -5,7 +5,7 @@ import ButtonSection from "./components/ButtonSection.vue";
 
 <template>
   <NavBar />
-  <main class="px-4">
+  <main class="px-11 mt-1">
     <ButtonSection />
   </main>
   <!-- <HelloWorld msg="Vite + Vue" /> -->

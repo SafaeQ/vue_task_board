@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav class="w-screen">
     <div class="flex flex-row items-center ml-5">
       <svg
         width="52"
