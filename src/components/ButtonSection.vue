@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-between p-8">
+  <div class="flex flex-row justify-between py-6">
     <div class="flex gap-3">
       <button
         class="w-32 flex flex-row items-center gap-1 bg-slightlyGray hover:bg-royalBlue font-semibold py-2 px-4 border border-gray92 rounded-lg"
