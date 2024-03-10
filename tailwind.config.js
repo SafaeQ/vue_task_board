@@ -14,7 +14,8 @@ export default {
       dimGray: '#656565',
       black: '#000',
       gray300: 'rgb(209 213 219)',
-      white: '#fff'
+      white: '#fff',
+      orange: '#F1BD6C'
     }
   },
   plugins: [],

@@ -10,5 +10,5 @@ import Board from "./components/Board.vue";
     <ButtonSection />
     <Board />
   </main>
-  <!-- <HelloWorld msg="Vite + Vue" /> -->
-</template>.
+</template>
+.

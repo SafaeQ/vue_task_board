@@ -32,7 +32,12 @@
           </span>
         </div>
       </div>
-      <Column title="To-Do" :tasks="todoTasks" @add-task="addTaskToToDo" />
+      <Column
+        title="To-Do"
+        :tasks="todoTasks"
+        @add-task="addTaskToToDo"
+        @delete-task="deleteTaskFromToDo"
+      />
     </div>
     <!-- in Progress -->
     <div class="flex flex-col gap-4">
@@ -70,6 +75,7 @@
         title="In-Progress"
         :tasks="inprogressTasks"
         @add-task="addTaskToInProgress"
+        @delete-task="deleteTaskFromInProgress"
       />
     </div>
   </div>
@@ -94,6 +100,14 @@ export default {
     },
     addTaskToInProgress(newTask) {
       this.inprogressTasks.push(newTask);
+    },
+    deleteTaskFromToDo(taskId) {
+      this.todoTasks = this.todoTasks.filter((task) => task.id !== taskId);
+    },
+    deleteTaskFromInProgress(taskId) {
+      this.inProgressTasks = this.inProgressTasks.filter(
+        (task) => task.id !== taskId
+      );
     },
   },
 };
