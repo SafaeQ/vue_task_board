@@ -1,5 +1,7 @@
 <template>
-  <div class="w-[304px] bg-white h-28 flex flex-col justify-between border-r rounded-lg p-4">
+  <div
+    class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+  >
     <div class="flex flex-row gap-2 w-full">
       <svg
         width="17"
@@ -18,7 +20,15 @@
         />
       </svg>
 
-      <span class="text-dimGray">Write a task name </span>
+      <span class="text-dimGray">{{ task.title }}</span>
+    </div>
+    <div class="flex flex-col gap-1 w-full">
+      <span class="text-dimGray">Description</span>
+      <span class="text-dimGray">{{ task.description }}</span>
+    </div>
+    <div class="flex flex-row gap-2 w-full">
+      <!-- Task Status -->
+      <span class="text-dimGray">{{ task.status }}</span>
     </div>
     <div class="flex flex-row gap-2 w-full">
       <svg
@@ -68,10 +78,8 @@
 
 <script>
 export default {
-  setup() {
-    return {};
+  props: {
+    task: Object,
   },
 };
 </script>
-
-<style lang="scss" scoped></style>

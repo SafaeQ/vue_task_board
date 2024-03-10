@@ -32,7 +32,7 @@
           </span>
         </div>
       </div>
-      <Column />
+      <Column title="To-Do" :tasks="todoTasks" @add-task="addTaskToToDo" />
     </div>
     <!-- in Progress -->
     <div class="flex flex-col gap-4">
@@ -66,7 +66,11 @@
           </span>
         </div>
       </div>
-      <Column />
+      <Column
+        title="In-Progress"
+        :tasks="inprogressTasks"
+        @add-task="addTaskToInProgress"
+      />
     </div>
   </div>
 </template>
@@ -78,8 +82,19 @@ export default {
   components: {
     Column,
   },
-  setup() {
-    return {};
+  data() {
+    return {
+      todoTasks: [], // Define your tasks here
+      inprogressTasks: [], // Define your tasks here
+    };
+  },
+  methods: {
+    addTaskToToDo(newTask) {
+      this.todoTasks.push(newTask);
+    },
+    addTaskToInProgress(newTask) {
+      this.inprogressTasks.push(newTask);
+    },
   },
 };
 </script>
