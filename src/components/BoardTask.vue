@@ -134,7 +134,7 @@ export default {
   },
     mounted(){
     //if(dragRef.value === null) return
-    console.log("mounted", dragRef)
+    // console.log("mounted", dragRef)
       this.initDrag()
   },
   methods: {

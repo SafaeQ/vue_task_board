@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <div class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg">
         <div v-for="task in tasks" :key="task.id">
-          <BoardTask            
+          <BoardTask
             :task="task"
             @delete-task="deleteTask(task.id)"
             @update-task="updateTask"
@@ -15,7 +15,7 @@
           <div
             class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
           >
-            <form @submit.prevent="addTask">
+            <form @submit.prevent="addTask(columnId)">
               <div class="flex flex-row gap-3 w-full">
                 <svg
                   width="17"
@@ -176,17 +176,19 @@
 import BoardTask from "./BoardTask.vue";
 import { mapMutations, mapActions, mapState } from "vuex";
 
-
 export default {
   components: {
     BoardTask,
   },
   props: {
     title: String,
-    columnTasks: Array,
+    tasks: Array,
+    columnId: Number,
   },
   computed: {
-    ...mapState(["tasks"]),
+    ...mapState({
+      columns: (state) => state.columns,
+    }),
   },
   data() {
     return {
@@ -209,12 +211,11 @@ export default {
     toggleDatePicker() {
       this.showDatePicker = !this.showDatePicker;
     },
-    addTask() {
+    addTask(columnId) {
       const id = Math.floor(Math.random() * 1000);
-      const newTaskData = { id, ...this.newTask }; // Create a copy to avoid reference issues
-      console.log(newTaskData);
-      this.addTaskAction(newTaskData);
-      this.toggleAddTaskForm(); // Hide the form after adding the task
+      const newTaskData = { id, ...this.newTask };
+      this.addTaskAction({ columnId, newTaskData }); 
+      this.toggleAddTaskForm();
       this.resetForm();
     },
     resetForm() {
@@ -224,11 +225,6 @@ export default {
       this.newTask.description = "";
       this.newTask.status = "";
     },
-
-    deleteTask(taskId) {
-      this.$emit("delete-task", taskId);
-    },
-    updateTask(updatedTask) {},
   },
 };
 </script>
