@@ -2,7 +2,9 @@
   <div
     ref="dragRef"
     :id="'task-' + task.id"
-    class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
+    :data-id="task.id"
+    :data-col="activeCol"
+    class="yes-drop w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
     :style="getPosition"
   >
     <div class="flex flex-row gap-3 w-full">
@@ -124,6 +126,7 @@ const dragRef = ref(null);
 export default {
   props: {
     task: Object,
+    activeCol: Number,
   },
   data() {
     return {
@@ -150,7 +153,7 @@ export default {
         inertia: true,
         listeners: {
           move: (e) => {
-            // console.log(this, e);
+            // console.log( e);
             this.item.x += e.dx;
             this.item.y += e.dy;
           },

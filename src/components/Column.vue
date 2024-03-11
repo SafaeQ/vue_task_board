@@ -1,10 +1,16 @@
 <template>
   <div class="flex flex-row gap-6">
     <div class="flex flex-col gap-4">
-      <div class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg">
+      <div
+        class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg dropzone"
+        :id="'column-' + columnId"
+        @drop="onDrop"
+        @dragover.prevent
+      >
         <div v-for="task in tasks" :key="task.id">
           <BoardTask
             :task="task"
+            :activeCol="columnId"
             @delete-task="deleteTask(task.id)"
             @update-task="updateTask"
           />
@@ -175,6 +181,7 @@
 <script>
 import BoardTask from "./BoardTask.vue";
 import { mapMutations, mapActions, mapState } from "vuex";
+import interact from "interactjs";
 
 export default {
   components: {
@@ -204,7 +211,7 @@ export default {
   },
   methods: {
     ...mapMutations(["updateTask", "deleteTask"]),
-    ...mapActions(["addTaskAction"]),
+    ...mapActions(["addTaskAction", "dropActions"]),
     toggleAddTaskForm() {
       this.showAddTaskForm = !this.showAddTaskForm;
     },
@@ -214,7 +221,7 @@ export default {
     addTask(columnId) {
       const id = Math.floor(Math.random() * 1000);
       const newTaskData = { id, ...this.newTask };
-      this.addTaskAction({ columnId, newTaskData }); 
+      this.addTaskAction({ columnId, newTaskData });
       this.toggleAddTaskForm();
       this.resetForm();
     },
@@ -225,6 +232,22 @@ export default {
       this.newTask.description = "";
       this.newTask.status = "";
     },
+    onDrop(event) {
+      this.dropActions({
+        task: event.dragEvent.target.dataset.id,
+        from: event.dragEvent.target.dataset.col,
+        to: this.columnId,
+      });
+    },
+    initDropzones() {
+      interact(`#column-${this.columnId}`).dropzone({
+        accept: `.yes-drop`,
+        ondrop: this.onDrop,
+      });
+    },
+  },
+  mounted() {
+    this.initDropzones();
   },
 };
 </script>

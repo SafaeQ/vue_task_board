@@ -78,10 +78,40 @@ export default createStore({
                 column.tasks.push(newTask);
             }
         },
+        dropTask(state, { task, from, to }) {
+            let newCol = {}
+            let targetTask = {}
+
+            state.columns = state.columns.map(column => {
+                if (column.id == from) {
+                    column.tasks = column.tasks.filter(t => {
+                        if (t.id == task) {
+                            targetTask = t
+                            return false
+                        }
+                        return true
+                    })
+                }
+                return column
+            });
+            if (targetTask) {
+                state.columns = state.columns.map(column => {
+                    if (column.id == to) {
+                        column.tasks.push(targetTask)
+                    }
+                    return column
+                });
+            }
+
+        }
     },
     actions: {
         addTaskAction({ commit }, { columnId, newTaskData }) {
             commit('addTask', { columnId, newTask: newTaskData });
         },
+        dropActions({ commit }, { task, from, to }) {
+            // console.log(task, from, to);
+            commit('dropTask', { task, from, to })
+        }
     }
 });
