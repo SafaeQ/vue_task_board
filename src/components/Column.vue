@@ -2,7 +2,7 @@
   <div class="flex flex-row gap-6">
     <div class="flex flex-col gap-4">
       <div
-        class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg dropzone"
+        class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg dropzone min-h-auto relative overflow-hidden"
         :id="'column-' + columnId"
         @drop="onDrop"
         @dragover.prevent
@@ -158,7 +158,7 @@
         <button
           @click="toggleAddTaskForm"
           v-show="!showAddTaskForm"
-          class="w-full mt-2 flex gap-1 flex-row items-center justify-center"
+          class="w-full hover:bg-royalBlue mt-2 flex gap-1 flex-row items-center justify-center py-2 px-4 border border-gray92 rounded-lg"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

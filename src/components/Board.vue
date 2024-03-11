@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row gap-6">
+  <div class="flex flex-row gap-6 relative">
     <!-- Columns -->
     <div
       class="flex flex-col gap-4"

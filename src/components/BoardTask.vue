@@ -4,8 +4,10 @@
     :id="'task-' + task.id"
     :data-id="task.id"
     :data-col="activeCol"
-    class="yes-drop w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
+    class="yes-drop w-[304px] hover:bg-royalBlue bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
     :style="getPosition"
+    @mouseenter="showDotsIcon = true"
+    @mouseleave="showDotsIcon = false"
   >
     <div class="flex flex-row gap-3 w-full">
       <svg
@@ -26,9 +28,34 @@
       </svg>
 
       <div class="flex flex-col gap-1 w-full">
-        <span class="text-dimGray text-base font-semibold">{{
-          task.title
-        }}</span>
+        <div class="flex flex-row justify-between w-full">
+          <span class="text-dimGray text-base font-semibold">{{
+            task.title
+          }}</span>
+          <!-- Dots Icon -->
+          <div class="dots-icon" @click="handleDotsClick" v-show="showDotsIcon">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z"
+                fill="#656565"
+              />
+              <path
+                d="M12 18C13.1046 18 14 17.1046 14 16C14 14.8954 13.1046 14 12 14C10.8954 14 10 14.8954 10 16C10 17.1046 10.8954 18 12 18Z"
+                fill="#656565"
+              />
+              <path
+                d="M12 6C13.1046 6 14 5.10457 14 4C14 2.89543 13.1046 2 12 2C10.8954 2 10 2.89543 10 4C10 5.10457 10.8954 6 12 6Z"
+                fill="#656565"
+              />
+            </svg>
+          </div>
+        </div>
         <div class="flex flex-row gap-1 items-center">
           <span class="text-dimGray font-medium text-sm">Description</span>
           <svg
@@ -134,6 +161,7 @@ export default {
         x: 0,
         y: 0,
       },
+      showDotsIcon: false,
     };
   },
 
@@ -161,6 +189,10 @@ export default {
         },
       });
     },
+    handleDotsClick() {
+      // Handle the click event on the dots icon
+      console.log("Dots icon clicked");
+    },
   },
   computed: {
     getPosition() {
@@ -172,5 +204,12 @@ export default {
 <style scoped>
 .task {
   cursor: grab;
+}
+.dots-icon {
+  cursor: pointer;
+}
+
+.yes-drop:hover .dots-icon {
+  display: block;
 }
 </style>
