@@ -59,7 +59,7 @@
             <div class="dropdown-menu" v-show="showDropdown">
               <!-- Dropdown menu items -->
               <button @click="editTask">Edit Task</button>
-              <button @click="deleteTask">Delete Task</button>
+              <button @click="deleteTask(task.id)">Delete Task</button>
             </div>
           </div>
         </div>
@@ -144,16 +144,13 @@
         </div>
       </div>
     </div>
-    <!-- Delete Button -->
-    <button @click="deleteTask" class="text-dimGray cursor-pointer">
-      Delete Task
-    </button>
   </div>
 </template>
 
 <script>
 import interact from "interactjs";
 import { ref } from "vue";
+import { mapActions } from "vuex";
 
 const dragRef = ref(null);
 
@@ -174,15 +171,17 @@ export default {
   },
 
   mounted() {
-    //if(dragRef.value === null) return
-    // console.log("mounted", dragRef)
-
     this.initDrag();
   },
   methods: {
-    deleteTask() {
-      console.log("deleted");
-      this.$emit("delete-task", this.task.id);
+    ...mapActions(["deleteTaskActions"]),
+
+    deleteTask(taskId) {
+      // console.log("deleted", this.task.id);
+      this.deleteTaskActions({ taskId });
+    },
+    editTask() {
+      console.log("edit");
     },
     initDrag() {
       interact(`#task-${this.task.id}`).draggable({
