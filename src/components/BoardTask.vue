@@ -33,7 +33,7 @@
             task.title
           }}</span>
           <!-- Dots Icon -->
-          <div class="dots-icon" @click="handleDotsClick" v-show="showDotsIcon">
+          <div class="dots-icon" @click="toggleDropdown" v-show="showDotsIcon">
             <svg
               width="24"
               height="24"
@@ -54,6 +54,13 @@
                 fill="#656565"
               />
             </svg>
+
+            <!-- Dropdown menu -->
+            <div class="dropdown-menu" v-show="showDropdown">
+              <!-- Dropdown menu items -->
+              <button @click="editTask">Edit Task</button>
+              <button @click="deleteTask">Delete Task</button>
+            </div>
           </div>
         </div>
         <div class="flex flex-row gap-1 items-center">
@@ -162,6 +169,7 @@ export default {
         y: 0,
       },
       showDotsIcon: false,
+      showDropdown: false,
     };
   },
 
@@ -189,9 +197,8 @@ export default {
         },
       });
     },
-    handleDotsClick() {
-      // Handle the click event on the dots icon
-      console.log("Dots icon clicked");
+    toggleDropdown() {
+      this.showDropdown = !this.showDropdown;
     },
   },
   computed: {
@@ -211,5 +218,35 @@ export default {
 
 .yes-drop:hover .dots-icon {
   display: block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 39px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  display: none;
+  color: black;
+  width: 50%;
+}
+
+.dots-icon .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
 }
 </style>
