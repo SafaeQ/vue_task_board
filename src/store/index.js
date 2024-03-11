@@ -68,7 +68,6 @@ export default createStore({
         ],
     },
     getters: {
-        todoTasks: state => state.todoTasks,
         columns: state => state.columns,
 
     },

@@ -1,7 +1,8 @@
 <template>
   <div
     ref="dragRef"
-    class="task w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
+    :id="'task-' + task.id"
+    class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
     :style="getPosition"
   >
     <div class="flex flex-row gap-3 w-full">
@@ -115,52 +116,54 @@
 </template>
 
 <script>
-import interact from "interactjs"
-import {ref} from "vue"
+import interact from "interactjs";
+import { ref } from "vue";
 
-const dragRef = ref(null)
+const dragRef = ref(null);
 
 export default {
-  data() {
-		return {
-			item: {
-				x: 0,
-				y: 0
-			}
-		};
-	},
   props: {
     task: Object,
   },
-    mounted(){
+  data() {
+    return {
+      item: {
+        x: 0,
+        y: 0,
+      },
+    };
+  },
+
+  mounted() {
     //if(dragRef.value === null) return
     // console.log("mounted", dragRef)
-      this.initDrag()
+
+    this.initDrag();
   },
   methods: {
     deleteTask() {
       console.log("deleted");
       this.$emit("delete-task", this.task.id);
     },
-    initDrag(){
-      interact(".task").draggable({
-      inertia: true,
-      listeners: {
-        move: (e) => {
-          console.log(this,e)					
-					this.item.x += e.dx;
-					this.item.y += e.dy;
-				},
-        end: ()=>this.item = {x:0, y:0}
-      }
-    })
-    }
+    initDrag() {
+      interact(`#task-${this.task.id}`).draggable({
+        inertia: true,
+        listeners: {
+          move: (e) => {
+            // console.log(this, e);
+            this.item.x += e.dx;
+            this.item.y += e.dy;
+          },
+          end: () => (this.item = { x: 0, y: 0 }),
+        },
+      });
+    },
   },
   computed: {
     getPosition() {
-			return `transform: translate(${this.item.x}px, ${this.item.y}px)`;
-		}
-  }
+      return `transform: translate(${this.item.x}px, ${this.item.y}px)`;
+    },
+  },
 };
 </script>
 <style scoped>
