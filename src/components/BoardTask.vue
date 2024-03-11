@@ -1,7 +1,7 @@
 <template>
   <div
     ref="dragRef"
-    class="task w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+    class="task w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
     :style="getPosition"
   >
     <div class="flex flex-row gap-3 w-full">
