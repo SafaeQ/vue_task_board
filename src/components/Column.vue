@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <div class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg">
         <div v-for="task in tasks" :key="task.id">
-          <BoardTask
+          <BoardTask            
             :task="task"
             @delete-task="deleteTask(task.id)"
             @update-task="updateTask"
@@ -175,6 +175,7 @@
 <script>
 import BoardTask from "./BoardTask.vue";
 import { mapMutations, mapActions, mapState } from "vuex";
+
 
 export default {
   components: {

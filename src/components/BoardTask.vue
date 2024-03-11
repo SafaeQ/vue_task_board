@@ -1,6 +1,8 @@
 <template>
   <div
-    class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+    ref="dragRef"
+    class="task w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+    :style="getPosition"
   >
     <div class="flex flex-row gap-3 w-full">
       <svg
@@ -113,15 +115,56 @@
 </template>
 
 <script>
+import interact from "interactjs"
+import {ref} from "vue"
+
+const dragRef = ref(null)
+
 export default {
+  data() {
+		return {
+			item: {
+				x: 0,
+				y: 0
+			}
+		};
+	},
   props: {
     task: Object,
+  },
+    mounted(){
+    //if(dragRef.value === null) return
+    console.log("mounted", dragRef)
+      this.initDrag()
   },
   methods: {
     deleteTask() {
       console.log("deleted");
       this.$emit("delete-task", this.task.id);
     },
+    initDrag(){
+      interact(".task").draggable({
+      inertia: true,
+      listeners: {
+        move: (e) => {
+          console.log(this,e)					
+					this.item.x += e.dx;
+					this.item.y += e.dy;
+				},
+        end: ()=>this.item = {x:0, y:0}
+      }
+    })
+    }
   },
+  computed: {
+    getPosition() {
+			return `transform: translate(${this.item.x}px, ${this.item.y}px)`;
+		}
+  }
 };
 </script>
+<style scoped>
+.task {
+  cursor: grab;
+}
+</style>
