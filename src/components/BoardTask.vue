@@ -256,7 +256,7 @@
   <!-- update Task Form - initially hidden -->
   <div v-else>
     <div
-      class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+      class="w-[292px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
     >
       <form @submit.prevent="updateTask">
         <!-- Form fields for editing task -->
@@ -264,13 +264,13 @@
           v-model="editedTask.title"
           type="text"
           placeholder="Title"
-          class="w-full bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+          class="w-full bg-slightlyGrayBg text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
           required
         />
         <textarea
           v-model="editedTask.description"
           placeholder="Description"
-          class="w-full mt-2 bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+          class="w-full mt-2 overflow-hidden bg-slightlyGrayBg text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
           required
         ></textarea>
         <div class="flex flex-row gap-2 w-full py-2">
@@ -279,10 +279,16 @@
             v-model="editedTask.status"
             type="text"
             placeholder="Status"
-            class="w-full bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+            class="w-full bg-slightlyGrayBg text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
             required
           />
         </div>
+        <input
+          v-model="editedTask.date"
+          type="date"
+          class="date-picker-input w-full bg-slightlyGrayBg text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+          placeholder="Select date"
+        />
         <!-- Submit button -->
         <div class="flex gap-2">
           <button
