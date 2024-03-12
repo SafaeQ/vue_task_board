@@ -83,13 +83,17 @@
                   ></textarea>
                   <div class="flex flex-row gap-2 w-full py-2">
                     <!-- Task Status -->
-                    <input
+                    <select
                       v-model="newTask.status"
-                      type="text"
-                      placeholder="Status"
                       class="w-full bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
                       required
-                    />
+                    >
+                      <option value="" disabled>Select Status</option>
+                      <option value="ToDo">To Do</option>
+                      <option value="InProgress">In Progress</option>
+                      <option value="Review">Review</option>
+                      <option value="Done">Done</option>
+                    </select>
                   </div>
                   <div class="flex flex-row gap-2 w-full">
                     <svg
@@ -182,6 +186,7 @@
 import BoardTask from "./BoardTask.vue";
 import { mapMutations, mapActions, mapState } from "vuex";
 import interact from "interactjs";
+import { STATUS } from "../store/types";
 
 export default {
   components: {
@@ -211,7 +216,7 @@ export default {
   },
   methods: {
     ...mapMutations(["updateTask", "deleteTask"]),
-    ...mapActions(["addTaskAction", "dropActions"]),
+    ...mapActions(["addTaskAction", "dropActions", "editTaskActions"]),
     toggleAddTaskForm() {
       this.showAddTaskForm = !this.showAddTaskForm;
     },
@@ -234,6 +239,25 @@ export default {
       this.newTask.status = "";
     },
     onDrop(event) {
+      let updatedTask = {
+        ...this.tasks.find(
+          (task) => task.id == event.dragEvent.target.dataset.id
+        ),
+      };
+      if (this.columnId == 4) {
+        updatedTask.status = STATUS.Done;
+      } else if (this.columnId == 3) {
+        updatedTask.status = STATUS.Review;
+      } else if (this.columnId == 2) {
+        updatedTask.status = STATUS.InProgress;
+      } else if (this.columnId == 1) {
+        updatedTask.status = STATUS.ToDo;
+      }
+      this.editTaskActions({
+        task: event.dragEvent.target.dataset.id,
+        updatedTask,
+      });
+
       this.dropActions({
         task: event.dragEvent.target.dataset.id,
         from: event.dragEvent.target.dataset.col,

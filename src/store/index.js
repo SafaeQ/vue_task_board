@@ -6,12 +6,14 @@ export default createStore({
             {
                 id: 1,
                 title: "To-Do",
+                status: "To-Do",
                 tasks: [
                     {
                         id: 654654,
                         title: "Add discount code to checkout page",
                         date: "2023-06-22",
                         type: "Feature Request",
+                        status: "To-Do",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
                     },
@@ -19,6 +21,7 @@ export default createStore({
                         id: 145687,
                         title: "Provide documentation on integrations",
                         date: "2023-07-53",
+                        status: "To-Do",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
                     },
@@ -27,12 +30,14 @@ export default createStore({
             {
                 id: 2,
                 title: "In Progress",
+                status: "In-Progress",
                 tasks: [
                     {
                         id: 646545,
                         title: "Design shopping cart dropdown",
                         date: "2023-01-25",
                         type: "Design",
+                        status: "In-Progress",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
                     },
@@ -41,11 +46,13 @@ export default createStore({
             {
                 id: 3,
                 title: "Review",
+                status: "Review",
                 tasks: [
                     {
                         id: 956746,
                         title: "Provide documentation on integrations",
                         date: "2023-06-18",
+                        status: "Review",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
                     },
@@ -54,12 +61,14 @@ export default createStore({
             {
                 id: 4,
                 title: "Done",
+                status: "Done",
                 tasks: [
                     {
                         id: 456546,
                         title: "Add discount code to checkout page",
                         date: "2023-06-27",
                         type: "Feature Request",
+                        status: "Done",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
                     },
