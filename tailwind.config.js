@@ -15,7 +15,10 @@ export default {
       black: '#000',
       gray300: 'rgb(209 213 219)',
       white: '#fff',
-      orange: '#F1BD6C'
+      orange: '#F1BD6C',
+      greenLight: '#9EE7E3',
+      purple: '#CD95EA',
+
     }
   },
   plugins: [],

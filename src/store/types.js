@@ -4,3 +4,8 @@ export const STATUS = {
     Review: 'Review',
     Done: 'Done'
 };
+export const PRIORITY = {
+    Low: 'Low',
+    Medium: 'Medium',
+    High: 'High',
+};

@@ -59,10 +59,85 @@
             </svg>
 
             <!-- Dropdown menu -->
-            <div class="dropdown-menu" v-show="showDropdown">
+            <div class="dropdown-menu shadow-md" v-show="showDropdown">
               <!-- Dropdown menu items -->
-              <button @click="editTaskToggle">Edit Task</button>
-              <button @click="deleteTask(task.id)">Delete Task</button>
+              <button
+                @click="editTaskToggle"
+                class="flex flex-row gap-1 items-center"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.518 3.68042L6.8187 9.37969C6.25115 9.94723 4.56644 10.2101 4.19007 9.83372C3.8137 9.45735 4.07059 7.77265 4.63813 7.20511L10.3434 1.49985C10.4841 1.34635 10.6544 1.22296 10.8442 1.13711C11.0338 1.05126 11.239 1.00473 11.4472 1.00034C11.6553 0.995962 11.8623 1.0338 12.0554 1.11159C12.2486 1.18938 12.424 1.30552 12.571 1.45296C12.718 1.6004 12.8337 1.7761 12.9109 1.96946C12.9882 2.16282 13.0255 2.36982 13.0205 2.57799C13.0156 2.78616 12.9684 2.99118 12.8821 3.18065C12.7957 3.37012 12.6719 3.54014 12.518 3.68042Z"
+                    stroke="#656565"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M6.3767 2.24664H3.38964C2.75587 2.24664 2.14809 2.4984 1.69994 2.94655C1.2518 3.3947 1 4.00251 1 4.63629V10.6104C1 11.2442 1.2518 11.852 1.69994 12.3001C2.14809 12.7483 2.75587 13 3.38964 13H9.96117C11.2814 13 11.7534 11.9247 11.7534 10.6104V7.62334"
+                    stroke="#656565"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="text-dimGray"> Edit</span>
+              </button>
+              <button
+                @click="deleteTask(task.id)"
+                class="flex flex-row gap-1 items-center"
+              >
+                <svg
+                  width="14"
+                  height="15"
+                  viewBox="0 0 14 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.3335 6.77777V11.1111"
+                    stroke="#B54421"
+                    stroke-width="1.44444"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8.22217 6.77777V11.1111"
+                    stroke="#B54421"
+                    stroke-width="1.44444"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M1 3.88892H12.5556"
+                    stroke="#B54421"
+                    stroke-width="1.44444"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2.44434 3.88892H6.77767H11.111V11.8334C11.111 13.03 10.141 14 8.94434 14H4.611C3.41439 14 2.44434 13.03 2.44434 11.8334V3.88892Z"
+                    stroke="#B54421"
+                    stroke-width="1.44444"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M4.61133 2.44444C4.61133 1.6467 5.25803 1 6.05577 1H7.50022C8.29798 1 8.94466 1.6467 8.94466 2.44444V3.88889H4.61133V2.44444Z"
+                    stroke="#B54421"
+                    stroke-width="1.44444"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="text-dimGray">Delete</span>
+              </button>
             </div>
           </div>
         </div>
@@ -94,13 +169,53 @@
         <span class="text-dimGray font-normal text-xs">{{
           truncateDescription(task.description)
         }}</span>
-        <div class="flex flex-row gap-2 w-full py-4">
-          <!-- Task Status -->
-          <!-- <span class="text-dimGray">{{ task.status }}</span> -->
-          <span
-            class="bg-blue-100 text-black text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-orange dark:text-blue-300"
-            >Meduim</span
-          >
+        <div class="flex flex-row gap-2 w-full py-2">
+          <!-- Dropdown button -->
+          <div class="relative z-10 cursor-pointer" @click="togglePriorityDropdown">
+            <span
+              :class="{
+                'dark:bg-greenLight': selectedPriority === 'Low',
+                'dark:bg-orange': selectedPriority === 'Medium',
+                'dark:bg-purple': selectedPriority === 'High',
+              }"
+              class="text-dimGray text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:text-blue-300"
+            >
+              {{ selectedPriority || "Select Priority" }}
+            </span>
+            <!-- Dropdown menu -->
+            <div
+              class="absolute top-full left-0 bg-white border border-gray-300 rounded-lg shadow-md py-1 z-50"
+              v-if="showPriorityDropdown"
+            >
+              <div
+                class="px-2 py-1 text-dimGray"
+                @click="selectPriority('Low')"
+              >
+                <span
+                  class="bg-greenLight text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300"
+                  >Low</span
+                >
+              </div>
+              <div
+                class="px-2 py-1 text-dimGray"
+                @click="selectPriority('Medium')"
+              >
+                <span
+                  class="bg-orange text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300"
+                  >Medium</span
+                >
+              </div>
+              <div
+                class="px-2 py-1 text-dimGray"
+                @click="selectPriority('High')"
+              >
+                <span
+                  class="bg-purple text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300"
+                  >High</span
+                >
+              </div>
+            </div>
+          </div>
         </div>
         <div class="flex flex-row gap-2 w-full">
           <svg
@@ -222,11 +337,14 @@ export default {
       showDotsIcon: false,
       showDropdown: false,
       showEditForm: false,
+      showPriorityDropdown: false,
+      selectedPriority: "Medium",
       editedTask: {
         id: null,
         title: "",
         description: "",
         status: "",
+        priority: "",
       },
     };
   },
@@ -282,6 +400,13 @@ export default {
       } else {
         return description.slice(0, maxLength) + "...";
       }
+    },
+    togglePriorityDropdown() {
+      this.showPriorityDropdown = !this.showPriorityDropdown;
+    },
+    selectPriority(priority) {
+      this.selectedPriority = priority;
+      this.showPriorityDropdown = false;
     },
   },
   computed: {
