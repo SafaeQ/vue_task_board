@@ -17,11 +17,38 @@
         </svg>
         <span class="text-dimGray">Add Task</span>
       </button>
-      <button
-        class="w-32 bg-slightlyGray hover:bg-royalBlue text-dimGray font-semibold py-2 px-4 border border-gray92 rounded-lg"
-      >
-        Filter
-      </button>
+      <div class="" @click="toggleFilterDropdown">
+        <button
+          class="w-32 relative bg-slightlyGray hover:bg-royalBlue text-dimGray font-semibold py-2 px-4 border border-gray92 rounded-lg"
+        >
+          Filter
+        </button>
+        <div
+          class="absolute w-auto px-2 py-2 flex flex-row gap-1 z-10 bg-white border border-gray-300 rounded-lg mt-1 shadow-md"
+          v-show="showFilterDropdown"
+        >
+          <!-- Filter options -->
+          <button
+            class="block w-full text-dimGray border border-r border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
+            @click="setFilter('Low')"
+          >
+            Low
+          </button>
+          <button
+            class="block w-full text-dimGray border-r border border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
+            @click="setFilter('Medium')"
+          >
+            Medium
+          </button>
+          <button
+            class="block w-full text-dimGray border-r border border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
+            @click="setFilter('Hight')"
+          >
+            Hight
+          </button>
+          <!-- Add more options as needed -->
+        </div>
+      </div>
     </div>
     <div class="flex">
       <button
@@ -46,8 +73,20 @@
 
 <script>
 export default {
-  setup() {
-    return {};
+  data() {
+    return {
+      showFilterDropdown: false,
+      selectedFilter: null,
+    };
+  },
+  methods: {
+    toggleFilterDropdown() {
+      this.showFilterDropdown = !this.showFilterDropdown;
+    },
+    setFilter(option) {
+      this.selectedFilter = option;
+      console.log("Selected filter:", option);
+    },
   },
 };
 </script>
