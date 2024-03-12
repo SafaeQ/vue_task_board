@@ -13,7 +13,7 @@ export default createStore({
                         id: 654654,
                         title: "Add discount code",
                         date: "2023-06-22",
-                        type: "Feature Request",
+                        priority: "Medium",
                         status: "To-Do",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
@@ -22,6 +22,7 @@ export default createStore({
                         id: 145687,
                         title: "Provide documentation",
                         date: "2023-07-53",
+                        priority: "Medium",
                         status: "To-Do",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
@@ -37,7 +38,7 @@ export default createStore({
                         id: 646545,
                         title: "Design",
                         date: "2023-01-25",
-                        type: "Design",
+                        priority: "Medium",
                         status: "In-Progress",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
@@ -53,6 +54,7 @@ export default createStore({
                         id: 956746,
                         title: "Provide documentation",
                         date: "2023-06-18",
+                        priority: "Medium",
                         status: "Review",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
@@ -68,7 +70,7 @@ export default createStore({
                         id: 456546,
                         title: "Update discount code",
                         date: "2023-06-27",
-                        type: "Feature Request",
+                        priority: "Medium",
                         status: "Done",
                         description:
                             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",

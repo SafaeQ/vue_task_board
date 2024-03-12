@@ -171,16 +171,19 @@
         }}</span>
         <div class="flex flex-row gap-2 w-full py-2">
           <!-- Dropdown button -->
-          <div class="relative z-10 cursor-pointer" @click="togglePriorityDropdown">
+          <div
+            class="relative z-10 cursor-pointer"
+            @click="togglePriorityDropdown"
+          >
             <span
               :class="{
-                'dark:bg-greenLight': selectedPriority === 'Low',
-                'dark:bg-orange': selectedPriority === 'Medium',
-                'dark:bg-purple': selectedPriority === 'High',
+                'dark:bg-greenLight': task.priority === 'Low',
+                'dark:bg-orange': task.priority === 'Medium',
+                'dark:bg-purple': task.priority === 'High',
               }"
               class="text-dimGray text-xs font-medium me-2 px-2.5 py-0.5 rounded-full dark:text-blue-300"
             >
-              {{ selectedPriority || "Select Priority" }}
+              {{ task.priority || "Select Priority" }}
             </span>
             <!-- Dropdown menu -->
             <div
@@ -338,13 +341,12 @@ export default {
       showDropdown: false,
       showEditForm: false,
       showPriorityDropdown: false,
-      selectedPriority: "Medium",
       editedTask: {
         id: null,
         title: "",
         description: "",
         status: "",
-        priority: "",
+        priority: "Medium",
       },
     };
   },
@@ -405,8 +407,17 @@ export default {
       this.showPriorityDropdown = !this.showPriorityDropdown;
     },
     selectPriority(priority) {
-      this.selectedPriority = priority;
+      this.task.priority = priority;
+      this.editedTask.priority = priority;
+
+      this.editTaskActions({
+        taskId: this.task.id,
+        updatedTask: this.task,
+      });
       this.showPriorityDropdown = false;
+    },
+    updateTaskPriority(priority) {
+      this.editedTask.priority = priority;
     },
   },
   computed: {
