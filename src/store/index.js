@@ -21,7 +21,7 @@ export default createStore({
                     {
                         id: 145687,
                         title: "Provide documentation",
-                        date: "2023-07-53",
+                        date: "2023-07-13",
                         priority: "Medium",
                         status: "To-Do",
                         description:
