@@ -2,7 +2,7 @@
   <div class="flex flex-row gap-6">
     <div class="flex flex-col gap-4">
       <div
-        class="w-80 bg-slightlyGrayBg p-2 border-r rounded-lg dropzone min-h-auto relative overflow-hidden"
+        class="w-[310px] bg-slightlyGrayBg p-2 border-r rounded-lg dropzone min-h-auto relative overflow-hidden"
         :id="'column-' + columnId"
         @drop="onDrop"
         @dragover.prevent

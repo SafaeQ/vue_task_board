@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row gap-6 relative">
+  <div class="flex flex-row gap-5 relative">
     <!-- Columns -->
     <div
       class="flex flex-col gap-4"
@@ -7,7 +7,7 @@
       v-for="column in columns"
       :key="column.title"
     >
-      <div class="flex flex-row justify-between text-dimGray w-80 px-1">
+      <div class="flex flex-row justify-between text-dimGray w-[316px] px-1">
         <span class="text-dimGray">{{ column.title }}</span>
         <div class="flex flex-row gap-2 items-center">
           <span>

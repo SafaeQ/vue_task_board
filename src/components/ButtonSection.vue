@@ -24,24 +24,24 @@
           Filter
         </button>
         <div
-          class="absolute w-auto px-2 py-2 flex flex-row gap-1 z-10 bg-white border border-gray-300 rounded-lg mt-1 shadow-md"
+          class="absolute w-auto px-2 py-2 h-24 flex flex-row  items-center gap-1 z-10 bg-white border border-gray300 rounded-lg mt-1 shadow-md"
           v-show="showFilterDropdown"
         >
           <!-- Filter options -->
           <button
-            class="block w-full text-dimGray border border-r border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
+            class="block w-full text-dimGray h-8 border border-r border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
             @click="setFilter('Low')"
           >
             Low
           </button>
           <button
-            class="block w-full text-dimGray border-r border border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
+            class="block w-full text-dimGray h-8 border-r border border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
             @click="setFilter('Medium')"
           >
             Medium
           </button>
           <button
-            class="block w-full text-dimGray border-r border border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
+            class="block w-full text-dimGray h-8 border-r border border-gray300 rounded-md px-4 hover:bg-slightlyGrayBg"
             @click="setFilter('Hight')"
           >
             Hight

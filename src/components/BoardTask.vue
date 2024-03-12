@@ -5,7 +5,7 @@
     :id="'task-' + task.id"
     :data-id="task.id"
     :data-col="activeCol"
-    class="yes-drop w-[304px] hover:bg-royalBlue bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
+    class="yes-drop w-[292px] hover:bg-royalBlue bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
     :style="getPosition"
     @mouseenter="showDotsIcon = true"
     @mouseleave="showDotsIcon = false"
