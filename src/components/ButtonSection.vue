@@ -24,7 +24,7 @@
           Filter
         </button>
         <div
-          class="absolute w-auto px-2 py-2 h-24 flex flex-row  items-center gap-1 z-10 bg-white border border-gray300 rounded-lg mt-1 shadow-md"
+          class="absolute w-auto px-2 py-2 h-24 flex flex-row  items-center gap-1 z-20 bg-white border border-gray300 rounded-lg mt-1 shadow-md"
           v-show="showFilterDropdown"
         >
           <!-- Filter options -->

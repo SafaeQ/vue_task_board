@@ -5,7 +5,7 @@
     :id="'task-' + task.id"
     :data-id="task.id"
     :data-col="activeCol"
-    class="yes-drop w-[292px] hover:bg-royalBlue bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md"
+    class="yes-drop w-[292px] hover:bg-royalBlue bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3 shadow-md z-10 relative"
     :style="getPosition"
     @mouseenter="showDotsIcon = true"
     @mouseleave="showDotsIcon = false"
@@ -172,7 +172,7 @@
         <div class="flex flex-row gap-2 w-full py-2">
           <!-- Dropdown button -->
           <div
-            class="relative z-10 cursor-pointer"
+            class="relative cursor-pointer"
             @click="togglePriorityDropdown"
           >
             <span
@@ -187,7 +187,7 @@
             </span>
             <!-- Dropdown menu -->
             <div
-              class="absolute top-full left-0 bg-white border border-gray-300 rounded-lg shadow-md py-1 z-50"
+              class="absolute top-full left-0 bg-white border border-gray-300 rounded-lg shadow-md py-1 z-20"
               v-if="showPriorityDropdown"
             >
               <div
@@ -378,9 +378,12 @@ export default {
           move: (e) => {
             this.item.x += e.dx;
             this.item.y += e.dy;
-            e.target.style.zIndex = 3;
+            e.target.style.zIndex = 20;
           },
-          end: () => (this.item = { x: 0, y: 0 }),
+          end: (e) => {
+            this.item = { x: 0, y: 0 }
+            e.target.style.zIndex = "";
+          },
         },
       });
     },
