@@ -11,7 +11,7 @@ export default createStore({
                 tasks: [
                     {
                         id: 654654,
-                        title: "Add discount code to checkout page",
+                        title: "Add discount code",
                         date: "2023-06-22",
                         type: "Feature Request",
                         status: "To-Do",
@@ -20,7 +20,7 @@ export default createStore({
                     },
                     {
                         id: 145687,
-                        title: "Provide documentation on integrations",
+                        title: "Provide documentation",
                         date: "2023-07-53",
                         status: "To-Do",
                         description:
@@ -35,7 +35,7 @@ export default createStore({
                 tasks: [
                     {
                         id: 646545,
-                        title: "Design shopping cart dropdown",
+                        title: "Design",
                         date: "2023-01-25",
                         type: "Design",
                         status: "In-Progress",
@@ -51,7 +51,7 @@ export default createStore({
                 tasks: [
                     {
                         id: 956746,
-                        title: "Provide documentation on integrations",
+                        title: "Provide documentation",
                         date: "2023-06-18",
                         status: "Review",
                         description:
@@ -66,7 +66,7 @@ export default createStore({
                 tasks: [
                     {
                         id: 456546,
-                        title: "Add discount code to checkout page",
+                        title: "Update discount code",
                         date: "2023-06-27",
                         type: "Feature Request",
                         status: "Done",

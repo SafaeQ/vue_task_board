@@ -92,7 +92,7 @@
           </svg>
         </div>
         <span class="text-dimGray font-normal text-xs">{{
-          task.description
+          truncateDescription(task.description)
         }}</span>
         <div class="flex flex-row gap-2 w-full py-4">
           <!-- Task Status -->
@@ -274,6 +274,14 @@ export default {
     },
     toggleDropdown() {
       this.showDropdown = !this.showDropdown;
+    },
+    truncateDescription(description) {
+      const maxLength = 50;
+      if (description.length <= maxLength) {
+        return description;
+      } else {
+        return description.slice(0, maxLength) + "...";
+      }
     },
   },
   computed: {
