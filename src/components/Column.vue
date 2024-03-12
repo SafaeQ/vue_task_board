@@ -89,8 +89,8 @@
                       required
                     >
                       <option value="" disabled>Select Status</option>
-                      <option value="ToDo">To Do</option>
-                      <option value="InProgress">In Progress</option>
+                      <option value="To-Do">To Do</option>
+                      <option value="In-Progress">In Progress</option>
                       <option value="Review">Review</option>
                       <option value="Done">Done</option>
                     </select>
@@ -253,6 +253,7 @@ export default {
       } else if (this.columnId == 1) {
         updatedTask.status = STATUS.ToDo;
       }
+      console.log('updatedTask',event.dragEvent.target.dataset.id,updatedTask)
       this.editTaskActions({
         task: event.dragEvent.target.dataset.id,
         updatedTask,

@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import { STATUS } from './types';
 
 export default createStore({
     state: {
@@ -83,7 +84,23 @@ export default createStore({
     mutations: {
         addTask(state, { columnId, newTask }) {
             const column = state.columns.find(column => column.id === columnId);
-            if (column) {
+            if (!column) return;
+
+            const statusColumnMap = {
+                [STATUS.ToDo]: 'To-Do',
+                [STATUS.InProgress]: 'In-Progress',
+                [STATUS.Review]: 'Review',
+                [STATUS.Done]: 'Done'
+            };
+
+            const targetColumn = state.columns.find(col => col.status === newTask.status);
+            const columnName = statusColumnMap[newTask.status];
+
+            if (targetColumn) {
+                targetColumn.tasks.push(newTask);
+            } else if (columnName) {
+                state[columnName].tasks.push(newTask);
+            } else {
                 column.tasks.push(newTask);
             }
         },
