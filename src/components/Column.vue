@@ -225,6 +225,7 @@ export default {
       this.toggleAddTaskForm();
       this.resetForm();
     },
+
     resetForm() {
       // Reset form fields
       this.newTask.title = "";

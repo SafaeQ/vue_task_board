@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!showEditForm"
     ref="dragRef"
     :id="'task-' + task.id"
     :data-id="task.id"
@@ -8,6 +9,7 @@
     :style="getPosition"
     @mouseenter="showDotsIcon = true"
     @mouseleave="showDotsIcon = false"
+    @click="toggleEditForm"
   >
     <div class="flex flex-row gap-3 w-full">
       <svg
@@ -58,7 +60,7 @@
             <!-- Dropdown menu -->
             <div class="dropdown-menu" v-show="showDropdown">
               <!-- Dropdown menu items -->
-              <button @click="editTask">Edit Task</button>
+              <button @click="editTaskToggle">Edit Task</button>
               <button @click="deleteTask(task.id)">Delete Task</button>
             </div>
           </div>
@@ -145,6 +147,57 @@
       </div>
     </div>
   </div>
+
+  <!-- update Task Form - initially hidden -->
+  <div v-else>
+    <div
+      class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+    >
+      <form @submit.prevent="updateTask">
+        <!-- Form fields for editing task -->
+        <input
+          v-model="editedTask.title"
+          type="text"
+          placeholder="Title"
+          class="w-full bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+          required
+        />
+        <textarea
+          v-model="editedTask.description"
+          placeholder="Description"
+          class="w-full mt-2 bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+          required
+        ></textarea>
+        <div class="flex flex-row gap-2 w-full py-2">
+          <!-- Task Status -->
+          <input
+            v-model="editedTask.status"
+            type="text"
+            placeholder="Status"
+            class="w-full bg-white text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
+            required
+          />
+        </div>
+        <!-- Submit button -->
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            class="flex-1 bg-blue-500 text-dimGray py-2 px-4 rounded"
+          >
+            Update Task
+          </button>
+          <!-- Cancel Edit button -->
+          <button
+            type="button"
+            class="flex-1 bg-gray-300 text-dimGray py-2 px-4 rounded"
+            @click="cancelEditTask"
+          >
+            Cancel Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -167,6 +220,13 @@ export default {
       },
       showDotsIcon: false,
       showDropdown: false,
+      showEditForm: false,
+      editedTask: {
+        id: null,
+        title: "",
+        description: "",
+        status: "",
+      },
     };
   },
 
@@ -174,21 +234,35 @@ export default {
     this.initDrag();
   },
   methods: {
-    ...mapActions(["deleteTaskActions"]),
+    ...mapActions(["deleteTaskActions", "editTaskActions"]),
 
     deleteTask(taskId) {
-      // console.log("deleted", this.task.id);
       this.deleteTaskActions({ taskId });
     },
-    editTask() {
-      console.log("edit");
+    editTaskToggle() {
+      this.showEditForm = !this.showEditForm;
+      if (this.showEditForm) {
+        this.editedTask = { ...this.task }; // Copy task data to editedTask
+      }
+    },
+
+    updateTask() {
+      this.editTaskActions({
+        taskId: this.task.id,
+        updatedTask: this.editedTask,
+      });
+      this.showEditForm = false;
+    },
+
+    // cancel editing and hide the edit form
+    cancelEditTask() {
+      this.showEditForm = false;
     },
     initDrag() {
       interact(`#task-${this.task.id}`).draggable({
         inertia: true,
         listeners: {
           move: (e) => {
-            // console.log( e);
             this.item.x += e.dx;
             this.item.y += e.dy;
           },

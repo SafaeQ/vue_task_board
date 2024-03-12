@@ -107,6 +107,17 @@ export default createStore({
             state.columns.forEach(column => {
                 column.tasks = column.tasks.filter(task => task.id !== taskId);
             });
+        },
+        editTask(state, { taskId, updatedTask }) {
+            state.columns.forEach(column => {
+                column.tasks = column.tasks.map(task => {
+                    if (task.id === taskId) {
+                        // update the task with the new data
+                        return { ...task, ...updatedTask };
+                    }
+                    return task;
+                });
+            });
         }
     },
     actions: {
@@ -117,9 +128,10 @@ export default createStore({
             commit('dropTask', { task, from, to })
         },
         deleteTaskActions({ commit }, { taskId }) {
-            console.log("deleted", taskId);
-
             commit('deleteTask', { taskId })
+        },
+        editTaskActions({ commit }, { taskId, updatedTask }) {
+            commit('editTask', { taskId, updatedTask })
         }
     }
 });
