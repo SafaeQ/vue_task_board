@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-row justify-between py-6">
+  <div class="flex flex-row md:flex-row sm:flex-col justify-between py-6">
     <div class="flex gap-3">
       <button
-        class="w-32 flex flex-row items-center gap-1 bg-slightlyGray hover:bg-royalBlue font-semibold py-2 px-4 border border-gray92 rounded-lg"
+        class="w-32 flex md:w-auto sm:w-auto flex-row items-center gap-1 bg-slightlyGray hover:bg-royalBlue font-semibold py-2 px-4 border border-gray92 rounded-lg"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
       </button>
       <div class="" @click="toggleFilterDropdown">
         <button
-          class="w-32 relative bg-slightlyGray hover:bg-royalBlue text-dimGray font-semibold py-2 px-4 border border-gray92 rounded-lg"
+          class="w-32 md:w-auto sm:w-auto relative bg-slightlyGray hover:bg-royalBlue text-dimGray font-semibold py-2 px-4 border border-gray92 rounded-lg"
         >
           Filter
         </button>
@@ -52,7 +52,7 @@
     </div>
     <div class="flex">
       <button
-        class="w-32 flex flex-row items-center justify-center gap-2 bg-slightlyGray hover:bg-royalBlue font-semibold py-2 px-4 border border-gray92 rounded-lg"
+        class="w-32 md:w-auto sm:w-auto flex flex-row items-center justify-center gap-2 bg-slightlyGray hover:bg-royalBlue font-semibold py-2 px-4 border border-gray92 rounded-lg"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -1,14 +1,14 @@
 <template>
-  <div class="flex flex-row gap-5 relative">
+  <div class="flex flex-row gap-5 relative board-container">
     <!-- Columns -->
     <div
-      class="flex flex-col gap-4"
+      class="flex flex-col gap-4 column"
       id="todo-column"
       v-for="column in columns"
       :key="column.title"
     >
-      <div class="flex flex-row justify-between text-dimGray w-[316px] px-1">
-        <span class="text-dimGray">{{ column.title }}</span>
+      <div class="flex flex-row sm:flex-row justify-between text-dimGray w-[316px] px-1">
+        <span class="text-dimGray sm:mb-0">{{ column.title }}</span>
         <div class="flex flex-row gap-2 items-center">
           <span>
             <svg
@@ -59,73 +59,23 @@ export default {
       columns: (state) => state.columns,
     }),
   },
-  // data() {
-  //   return {
-  //     columns: [
-  //       {
-  //         id: 1,
-  //         title: "To-Do",
-  //         tasks: [
-  //           {
-  //             id: 654654,
-  //             title: "Add discount code to checkout page",
-  //             date: "2023-06-22",
-  //             type: "Feature Request",
-  //             description:
-  //               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  //           },
-  //           {
-  //             id: 145687,
-  //             title: "Provide documentation on integrations",
-  //             date: "2023-07-53",
-  //             description:
-  //               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         id: 2,
-  //         title: "In Progress",
-  //         tasks: [
-  //           {
-  //             id: 646545,
-  //             title: "Design shopping cart dropdown",
-  //             date: "2023-01-25",
-  //             type: "Design",
-  //             description:
-  //               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         id: 3,
-  //         title: "Review",
-  //         tasks: [
-  //           {
-  //             id: 956746,
-  //             title: "Provide documentation on integrations",
-  //             date: "2023-06-18",
-  //             description:
-  //               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         id: 4,
-  //         title: "Done",
-  //         tasks: [
-  //           {
-  //             id: 456546,
-  //             title: "Add discount code to checkout page",
-  //             date: "2023-06-27",
-  //             type: "Feature Request",
-  //             description:
-  //               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been",
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   };
-  // },
 };
 </script>
+<style scoped>
+.board-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.column {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .flex-col {
+    width: 100%;
+  }
+}
+</style>
