@@ -171,10 +171,7 @@
         }}</span>
         <div class="flex flex-row gap-2 w-full py-2">
           <!-- Dropdown button -->
-          <div
-            class="relative cursor-pointer"
-            @click="togglePriorityDropdown"
-          >
+          <div class="relative cursor-pointer" @click="togglePriorityDropdown">
             <span
               :class="{
                 'dark:bg-greenLight': task.priority === 'Low',
@@ -275,13 +272,17 @@
         ></textarea>
         <div class="flex flex-row gap-2 w-full py-2">
           <!-- Task Status -->
-          <input
+          <select
             v-model="editedTask.status"
-            type="text"
-            placeholder="Status"
             class="w-full bg-slightlyGrayBg text-dimGray border-r rounded-lg border border-slightlyGray p-2 font-medium text-sm"
             required
-          />
+          >
+            <option value="" disabled>Select Status</option>
+            <option value="To-Do">To Do</option>
+            <option value="In-Progress">In Progress</option>
+            <option value="Review">Review</option>
+            <option value="Done">Done</option>
+          </select>
         </div>
         <input
           v-model="editedTask.date"
@@ -290,7 +291,7 @@
           placeholder="Select date"
         />
         <!-- Submit button -->
-        <div class="flex gap-2">
+        <div class="flex gap-2 mt-1">
           <button
             type="submit"
             class="flex-1 bg-blue-500 text-dimGray py-2 px-4 rounded"
@@ -381,7 +382,7 @@ export default {
             e.target.style.zIndex = 20;
           },
           end: (e) => {
-            this.item = { x: 0, y: 0 }
+            this.item = { x: 0, y: 0 };
             e.target.style.zIndex = "";
           },
         },
