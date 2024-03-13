@@ -18,7 +18,7 @@
       <!-- New Task Form - initially hidden -->
       <div v-if="showAddTaskForm">
         <div
-          class="w-[304px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
+          class="w-[292px] bg-white h-auto flex flex-col justify-between border-r rounded-lg p-4 mb-3"
         >
           <form @submit.prevent="addTask(columnId)">
             <div class="flex flex-row gap-3 w-full">
